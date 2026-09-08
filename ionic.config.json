@@ -1,0 +1,7 @@
+{
+  "name": "muralFirebase",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
