@@ -13,6 +13,17 @@
     Conectado como <strong>{{ auth.usuario.email }}</strong>
   </p>
 
+  <div class="perfil" *ngIf="auth.usuario">
+  <img
+    *ngIf="auth.usuario.photoURL"
+    [src]="auth.usuario.photoURL"
+    alt="Foto do perfil">
+  <span>
+    Conectado como
+    <strong>{{ auth.usuario.displayName || auth.usuario.email }}</strong>
+  </span>
+</div>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>Novo recado</ion-card-title>

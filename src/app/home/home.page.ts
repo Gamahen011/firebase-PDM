@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonItem, IonLabel, IonTitle, IonToolbar } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { Recado } from '../models/recado';
 import { AuthService } from '../services/authService';
 import { RecadoService } from '../services/recadoService';
@@ -12,7 +12,7 @@ import { RecadoService } from '../services/recadoService';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonButton, IonContent, IonCard, IonCardContent, IonItem, IonLabel, IonTitle, IonToolbar, IonHeader, IonCardTitle, IonCardHeader, IonButtons],
+  imports: [IonicModule, CommonModule, FormsModule],
 })
 export class HomePage implements OnInit {
 
@@ -47,12 +47,16 @@ export class HomePage implements OnInit {
       return;
     }
 
-    const autor = this.auth.usuario?.email ?? 'anônimo';
+    // nome do Google > e-mail > anônimo — nessa ordem
+    const autor = this.auth.usuario?.displayName
+      ?? this.auth.usuario?.email
+      ?? 'anônimo';
+
     await this.recadoService.adicionar(this.textoNovo.trim(), autor);
     this.textoNovo = '';
     await this.carregar();
   }
-
+  
   async excluir(id: string) {
     await this.recadoService.remover(id);
     await this.carregar();
@@ -63,4 +67,5 @@ export class HomePage implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  
 }

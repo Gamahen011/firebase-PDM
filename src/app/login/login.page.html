@@ -33,13 +33,19 @@
           {{ mensagemErro }}
         </p>
 
-        <ion-button expand="block" (click)="login()">
-          Entrar
+        <div class="divisor"><span>ou</span></div>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          (click)="loginGoogle()">
+          Entrar com Google
         </ion-button>
 
         <ion-button expand="block" fill="clear" routerLink="/cadastro">
           Criar uma conta
         </ion-button>
+  
 
       </ion-card-content>
     </ion-card>
